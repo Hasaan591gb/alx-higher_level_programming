@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 def my_function(a, b):
-    from magic_calculation_102 import add as add, sub as sub
+    from magic_calculation_102 import add, sub
     if a < b:
         c = add(a, b)
         for i in range(4, 6):
