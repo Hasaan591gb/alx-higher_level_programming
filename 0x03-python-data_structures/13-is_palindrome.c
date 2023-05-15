@@ -1,64 +1,41 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
 
-size_t count_nodes(listint_t *node);
-
 /**
- * is_palindrome - Checks if a singly linked list is a palindrome
- * @head: Double pointer to the head of the linked list
+ * check_palindrome - recursively checks if a linked list is a palindrome
+ * @current: double pointer to the current node
+ * @right: pointer to the rightmost node
  *
- * Return: 0 if the list is not a palindrome, 1 if it is a palindrome
+ * Return: 1 if the list is a palindrome, 0 otherwise
  */
-int is_palindrome(listint_t **head)
+int check_palindrome(listint_t **current, listint_t *right)
 {
-	listint_t *current = *head;
-	size_t node_num;
-	int *array;
-	size_t i, palid_check = 1;
+	int ispal;
 
-	if (head == NULL)
-		return (0);
+	if (right == NULL)
+		return (1);
 
-	node_num = count_nodes(current);
-	array = malloc(sizeof(int) * node_num);
-	if (array == NULL)
-		return (0);
-
-	for (i = 0; i < node_num; i++)
+	ispal = check_palindrome(current, right->next);
+	if (ispal)
 	{
-		*(array + i) = current->n;
-		current = current->next;
+		if ((*current)->n != right->n)
+			ispal = 0;
+		*current = (*current)->next;
 	}
 
-	for (i = 0; i < (node_num / 2); i++)
-	{
-		if (*(array + i) != *(array + (node_num - i - 1)))
-		{
-			palid_check = 0;
-			break;
-		}
-	}
-
-	free(array);
-	return (palid_check);
+	return (ispal);
 }
 
 /**
- * count_nodes - Counts the number of nodes in a linked list
- * @node: Pointer to the head of the linked list
+ * is_palindrome - checks if a singly linked list is a palindrome
+ * @head: double pointer to the head of the list
  *
- * Return: The number of nodes in the linked list
+ * Return: 1 if the list is a palindrome, 0 otherwise
  */
-size_t count_nodes(listint_t *node)
+int is_palindrome(listint_t **head)
 {
-	size_t n = 0;
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
 
-	while (node != NULL)
-	{
-		n++;
-		node = node->next;
-	}
-
-	return (n);
+	return (check_palindrome(head, *head));
 }
