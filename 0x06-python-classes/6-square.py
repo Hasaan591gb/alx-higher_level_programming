@@ -6,7 +6,7 @@
 class Square:
     """Represents a square shape."""
 
-    def __init__(self, size=0):
+    def __init__(self, size=0, position=(0, 0)):
         """
         Initializes a Square object with a given size.
 
@@ -21,6 +21,7 @@ class Square:
         if size < 0:
             raise ValueError('size must be >= 0')
         self.__size = size
+        self.__position = position
 
     @property
     def size(self):
@@ -91,9 +92,9 @@ class Square:
 
         if self.__size == 0:
             print()
-        for i in range(self.position[1]):
+        for i in range(self.__position[1]):
             print()
         for j in range(self.__size):
-            for k in range(self.position[0]):
-                print(" " * self.position[0], end="")
+            for k in range(self.__position[0]):
+                print(" ", end="")
             print("#" * self.__size)
