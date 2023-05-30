@@ -91,7 +91,6 @@ void print_python_list(PyObject *p)
 	for (i = 0; i < size; i++)
 	{
 		printf("Element %ld: %s\n", i, list->ob_item[i]->ob_type->tp_name);
-		fflush(stdout);
 		if (PyBytes_Check(list->ob_item[i]))
 			print_python_bytes(list->ob_item[i]);
 		else if (PyFloat_Check(list->ob_item[i]))
