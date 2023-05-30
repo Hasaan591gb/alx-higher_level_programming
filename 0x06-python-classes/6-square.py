@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# 5-square.py by Hasaan Ahmad
+# 6-square.py by Hasaan Ahmad
 """defines a square"""
 
 
@@ -20,8 +20,8 @@ class Square:
             raise TypeError('size must be an integer')
         if size < 0:
             raise ValueError('size must be >= 0')
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
@@ -67,8 +67,9 @@ class Square:
         TypeError: If value is not a tuple of two positive integers.
         """
 
-        if type(value) != tuple or len(value) != 2\
-                or type(value[0]) != int or type(value[0]) != int:
+        if type(value) != tuple or len(value) != 2:
+            raise TypeError('position must be a tuple of 2 positive integers')
+        if type(value[0]) != int or type(value[0]) != int:
             raise TypeError('position must be a tuple of 2 positive integers')
         self.__position = value
 
@@ -92,9 +93,9 @@ class Square:
 
         if self.__size == 0:
             print()
-        for i in range(self.__position[1]):
+        for i in range(self.position[1]):
             print()
         for j in range(self.__size):
-            for k in range(self.__position[0]):
+            for k in range(self.position[0]):
                 print(" ", end="")
             print("#" * self.__size)
