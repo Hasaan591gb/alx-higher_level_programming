@@ -1,0 +1,99 @@
+#!/usr/bin/python3
+# 5-square.py by Hasaan Ahmad
+"""defines a square"""
+
+
+class Square:
+    """Represents a square shape."""
+
+    def __init__(self, size=0):
+        """
+        Initializes a Square object with a given size.
+
+        :param size: The size of the square. Default value is 0.
+        :type size: int
+        :raises TypeError: If size is not an integer.
+        :raises ValueError: If size is less than 0.
+        """
+
+        if type(size) != int:
+            raise TypeError('size must be an integer')
+        if size < 0:
+            raise ValueError('size must be >= 0')
+        self.__size = size
+
+    @property
+    def size(self):
+        """Retrieves size of square"""
+
+        return self.__size
+
+    @size.setter
+    def size(self, value):
+        """Sets the size of the square to a given value.
+
+        :param value: The new size of the square.
+        :type value: int
+        :raises TypeError: If value is not an integer.
+        :raises ValueError: If value is less than 0.
+        """
+
+        if type(value) != int:
+            raise TypeError('size must be an integer')
+        if value < 0:
+            raise ValueError('size must be >= 0')
+        self.__size = value
+
+    @property
+    def position(self):
+        """Get the position of the object.
+
+        Returns:
+        tuple: A tuple of two integers representing the position of the object.
+        """
+
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        """Set the position of the object.
+
+        Args:
+        value (tuple): A tuple of two integers
+                       representing the new position of the object.
+
+        Raises:
+        TypeError: If value is not a tuple of two positive integers.
+        """
+
+        if type(value) != tuple or len(value) != 2\
+                or type(value[0]) != int or type(value[0]) != int:
+            raise TypeError('position must be a tuple of 2 positive integers')
+        self.__position = value
+
+    def area(self):
+        """
+        Calculates and returns the area of the square.
+
+        :return: The area of the square.
+        :rtype: int
+        """
+
+        return self.__size * self.__size
+
+    def my_print(self):
+        """
+        Prints a square of size `self.__size` using the '#' character.
+        If `self.__size` is 0, it prints an empty line.
+
+        :param self: The instance of the class.
+        """
+
+        if self.__size == 0:
+            print()
+        for i in range(self.position[1]):
+            print()
+        for j in range(self.__size):
+            for k in range(self.position[0]):
+                print(" " * self.position[0], end="")
+            print("#" * self.__size)
