@@ -15,20 +15,22 @@ void print_python_float(PyObject *p);
  */
 void print_python_float(PyObject *p)
 {
-	PyFloatObject *object;
+	PyFloatObject *object = (PyFloatObject *)p;
+	char *value_str = NULL;
+
+	fflush(stdout);
 
 	printf("[.] float object info\n");
-	fflush(stdout);
 	if (!PyFloat_Check(p))
 	{
 		printf("  [ERROR] Invalid Float Object\n");
-		fflush(stdout);
 		return;
 	}
 
-	object = (PyFloatObject *)p;
-	printf("  value: %f\n", object->ob_fval);
-	fflush(stdout);
+	value_str = PyOS_double_to_string(object->ob_fval, 'r', 0,
+			Py_DTSF_ADD_DOT_0, NULL);
+	printf("  value: %s\n", value_str);
+	PyMem_Free(value_str);
 }
 
 
@@ -42,12 +44,12 @@ void print_python_bytes(PyObject *p)
 	char *str;
 	PyBytesObject *object;
 
-	printf("[.] bytes object info\n");
 	fflush(stdout);
+
+	printf("[.] bytes object info\n");
 	if (!PyBytes_Check(p))
 	{
 		printf("  [ERROR] Invalid Bytes Object\n");
-		fflush(stdout);
 		return;
 	}
 
@@ -55,20 +57,16 @@ void print_python_bytes(PyObject *p)
 	size = object->ob_base.ob_size;
 	str = object->ob_sval;
 	printf("  size: %ld\n", size);
-	fflush(stdout);
 	printf("  trying string: %s\n", str);
-	fflush(stdout);
 
 	limit = size + 1;
 	if (limit > 10)
 		limit = 10;
 	printf("  first %ld bytes:", limit);
-	fflush(stdout);
 
 	for (i = 0; i < limit; i++)
 		printf(" %02x", str[i] & 0xff);
 	printf("\n");
-	fflush(stdout);
 }
 
 
@@ -82,12 +80,12 @@ void print_python_list(PyObject *p)
 	PyListObject *list = (PyListObject *)p;
 
 	size = list->ob_base.ob_size;
+
+	fflush(stdout);
+
 	printf("[*] Python list info\n");
-	fflush(stdout);
 	printf("[*] Size of the Python List = %ld\n", size);
-	fflush(stdout);
 	printf("[*] Allocated = %ld\n", list->allocated);
-	fflush(stdout);
 
 	for (i = 0; i < size; i++)
 	{
