@@ -2,6 +2,7 @@
 # 0-square.py by Hasaan Ahmad
 """defines a square"""
 
+
 class Square:
     """Represents a square shape.
 
