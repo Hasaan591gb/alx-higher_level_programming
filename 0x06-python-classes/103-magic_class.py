@@ -1,22 +1,22 @@
 #!/usr/bin/python3
-"""writing a docstring"""
+"""importing math module to use pi"""
 import math
 
 
 class MagicClass:
-    """set up the magic"""
+    """defines a MagicClass object"""
 
     def __init__(self, radius=0):
-        """ writing another docstring """
+        """initializing radius argument"""
         self.__radius = 0
         if type(radius) is not int and type(radius) is not float:
             raise TypeError('radius must be a number')
         self.__radius = radius
 
     def area(self):
-        """again with the docstring"""
+        """area of MagicClass object"""
         return self.__radius ** 2 * math.pi
 
     def circumference(self):
-        """such docstring"""
+        """circmference of MagicClass object"""
         return 2 * math.pi * self.__radius
