@@ -82,20 +82,21 @@ class Square:
 
         return self.__size * self.__size
 
+    def str_print(self):
+        """returns the string to print"""
+        my_str = ""
+        if self.size == 0:
+            return "\n"
+        for w in range(self.position[1]):
+            my_str += "\n"
+        for w in range(self.size):
+            for i in range(self.position[0]):
+                my_str += " "
+            for j in range(self.size):
+                my_str += "#"
+            my_str += "\n"
+        return my_str
+
     def my_print(self):
-        """
-        Prints a square of size `self.__size` using the '#' character.
-        If `self.__size` is 0, it prints an empty line.
-
-        :param self: The instance of the class.
-        """
-
-        if self.__size == 0:
-            print()
-            return
-        for i in range(self.position[1]):
-            print()
-        for j in range(self.__size):
-            for k in range(self.position[0]):
-                print(" ", end="")
-            print("#" * self.__size)
+        """print the square in position"""
+        print(self.str_print(), end='')
