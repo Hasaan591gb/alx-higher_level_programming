@@ -104,7 +104,8 @@ class Rectangle:
     def area(self):
         """Calculate and return the area of the rectangle.
 
-        The area is calculated by multiplying the width and height of the rectangle.
+        The area is calculated by multiplying the width
+        and height of the rectangle.
 
         Returns:
             float: The area of the rectangle."""
@@ -114,8 +115,9 @@ class Rectangle:
     def perimeter(self):
         """Calculate and return the perimeter of the rectangle.
 
-        If either the width or height of the rectangle is 0, the perimeter is 0.
-        Otherwise, the perimeter is calculated as twice the sum of the width and height.
+        If either the width or height of the rectangle is 0,
+        the perimeter is 0. Otherwise, the perimeter is calculated
+        as twice the sum of the width and height.
 
         Returns:
             float: The perimeter of the rectangle."""
