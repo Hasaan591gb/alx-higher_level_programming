@@ -205,8 +205,8 @@ class Rectangle:
     def square(cls, size=0):
         """Creates a new square object.
 
-        This method creates a new Rectangle object with the same width and height,
-        making it a square.
+        This method creates a new Rectangle object with the
+        same width and height, making it a square.
 
         Args:
             size (int): The size of the square's sides. Defaults to 0.
